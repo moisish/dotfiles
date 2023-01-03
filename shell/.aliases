@@ -1,8 +1,6 @@
 # PHP
 alias phpunit="vendor/bin/phpunit"
-alias phpunitw="phpunit-watcher watch"
-alias a="php artisan"
-alias ar="php artisan remote"
+alias ar="php artisan"
 alias c="composer"
 alias cu="composer update"
 alias cr="composer require"
@@ -10,8 +8,6 @@ alias ci="composer install"
 alias cda="composer dump-autoload -o"
 alias larastan="vendor/bin/phpstan analyse"
 alias hostfile="sudo vi /etc/hosts"
-alias deploy='envoy run deploy'
-alias deploy-code='envoy run deploy-code'
 alias mfs='php artisan migrate:fresh --seed'
 alias nah='git reset --hard;git clean -df'
 
@@ -41,8 +37,10 @@ alias l="ls -laF"
 alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
 
 # PHP
-alias switch-php80="brew unlink php@7.4 && brew link --overwrite --force php"
-alias switch-php74="brew unlink php && brew link --overwrite --force php@7.4"
+alias php74="brew unlink php && brew link --overwrite --force shivammathur/php/php@7.4"
+alias php80="brew unlink php && brew link --overwrite --force shivammathur/php/php@8.0"
+alias php81="brew unlink php && brew link --overwrite --force shivammathur/php/php@8.1"
+alias php82="brew unlink php && brew link --overwrite --force shivammathur/php/php@8.2"
 
 # Redis
 alias flush-redis="redis-cli FLUSHALL"
@@ -73,10 +71,6 @@ alias sudo='sudo '
 
 # Scape webpage
 alias scrape="scrapeUrl"
-
-# Switch NPM
-alias npmnpm="npm config set registry https://registry.npmjs.org"
-alias npmspatie="npm config set registry https://npm.spatie.be"
 
 # Restart touch bar
 alias touchbar="killall ControlStrip"

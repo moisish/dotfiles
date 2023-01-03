@@ -15,76 +15,12 @@ function pf() {
    fi
 }
 
-# Docker
-function ssh-docker() {
-   docker exec -it "$@" bash
-}
-
-# Create a new directory and enter it
-function mkd() {
-   mkdir -p "$@" && cd "$@"
-}
-
-# Start an HTTP server from a directory, optionally specifying the port
-function server() {
-	local port="${1:-9000}"
-	sleep 2 && open "http://localhost:${port}/" &
-	# Set the default Content-Type to `text/plain` instead of `application/octet-stream`
-	# And serve everything as UTF-8 (although not technically correct, this doesn’t break anything for binary files)
-	python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
-}
-
-# Start a PHP server from a directory, optionally specifying the port
-# (Requires PHP 5.4.0+.)
-function phpserver() {
-	local port="${1:-4000}"
-	local ip=$(ipconfig getifaddr en0)
-	sleep 2 && open "http://${ip}:${port}/" &
-	php -S "${ip}:${port}"
-}
-
-# All the dig info
-function digga() {
-	dig +nocmd "$1" any +multiline +noall +answer
-}
-
-function tinker()
-{
-  if [ -z "$1" ]
-    then
-       php artisan tinker
-    else
-       php artisan tinker --execute="dd($1);"
-  fi
-}
-
-#shortcut voor zhs quick-look command
-function ql() {
-   quick-look "$1"
-}
-
-archive () {
-   zip -r "$1".zip -i "$1" ;
-}
-
-function removehost() {
-   ssh-keygen -R "$1"
-}
-
-function weather() {
-   local city="${1:-Antwerp}"
-   curl http://wttr.in/${city// /+}\?F
-}
 
 alias mysqladm='mysql -u root'
 
 # Scrape a single webpage with all assets
 function scrapeUrl() {
     wget --adjust-extension --convert-links --page-requisites --span-hosts --no-host-directories "$1"
-}
-
-function rector() {
-   docker run -v $(pwd):/project rector/rector:latest process /project/$1 --set php80 --autoload-file /project/vendor/autoload.php 
 }
 
 #  Commit everything

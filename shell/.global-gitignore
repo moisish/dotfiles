@@ -10,9 +10,6 @@ Thumbs.db
 # Vim swap files
 .*.sw?
 
-# PhpStorm
-.idea
-
 # vs code
 .vscode
 
