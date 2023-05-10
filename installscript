@@ -139,10 +139,6 @@ echo '---------------------'
 composer global require laravel/valet
 valet install
 
-echo 'Install zsh-autosuggestions'
-echo '---------------------------'
-brew install zsh-autosuggestions
-
 echo '++++++++++++++++++++++++++++++'
 echo '++++++++++++++++++++++++++++++'
 echo 'All done!'

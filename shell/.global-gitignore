@@ -22,3 +22,6 @@ npm-debug.log
 yarn-error.log
 .phpunit-watcher-cache.php
 .phpunit.result.cache
+
+.env.production
+.env.prod

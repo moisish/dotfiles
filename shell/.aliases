@@ -1,3 +1,5 @@
+#Docker
+alias dcomp="docker compose"
 # PHP
 alias phpunit="vendor/bin/phpunit"
 alias ar="php artisan"
@@ -17,6 +19,7 @@ alias sshconfig="vi ~/.ssh/config"
 alias copykey='command cat ~/.ssh/id_rsa.public | pbcopy'
 alias sail='./vendor/bin/sail'
 alias tunnel='valet share -subdomain=freekmurze -region=eu'
+alias dep='vendor/bin/dep'
 
 # JavaScript
 alias jest="./node_modules/.bin/jest"
@@ -37,10 +40,9 @@ alias l="ls -laF"
 alias phpstorm='open -a /Applications/PhpStorm.app "`pwd`"'
 
 # PHP
-alias php74="brew unlink php && brew link --overwrite --force shivammathur/php/php@7.4"
-alias php80="brew unlink php && brew link --overwrite --force shivammathur/php/php@8.0"
-alias php81="brew unlink php && brew link --overwrite --force shivammathur/php/php@8.1"
-alias php82="brew unlink php && brew link --overwrite --force shivammathur/php/php@8.2"
+alias php74="brew unlink php@8.0 && brew unlink php@8.1 && brew link --overwrite --force shivammathur/php/php@7.4"
+alias php80="brew unlink php@7.4 && brew unlink php@8.1 && brew link --overwrite --force shivammathur/php/php@8.0"
+alias php81="brew unlink php@7.4 && brew unlink php@8.0 && brew link --overwrite --force shivammathur/php/php@8.1"
 
 # Redis
 alias flush-redis="redis-cli FLUSHALL"
@@ -50,7 +52,7 @@ alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && kill
 alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
 # IP addresses
-alias ip="curl https://diagnostic.opendns.com/myip ; echo"
+alias ip="curl ifconfig.me/ip ; echo"
 alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, \"\"); print }'"
 
 # Flush Directory Service cache
@@ -71,3 +73,6 @@ alias scrape="scrapeUrl"
 
 # Restart touch bar
 alias touchbar="killall ControlStrip"
+
+alias php-log="open ~/.config/valet/Log/php-fpm.log"
+alias nginx-log="open ~/.config/valet/Log/nginx-error.log"
