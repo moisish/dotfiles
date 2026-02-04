@@ -16,7 +16,7 @@ DEFAULT_USER=`whoami`
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git laravel4 laravel5 composer macos vagrant)
+plugins=(git docker docker-compose composer macos vagrant zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -55,7 +55,10 @@ for file in ~/.dotfiles-custom/shell/.{exports,aliases,functions,zshrc}; do
 done
 unset file
 
-# Directory jumping now handled by zoxide (see modern tools section below)
+# Directory jumping with z.sh fallback until zoxide is verified
+if [ -f ~/.dotfiles/home/z.sh ]; then
+    . ~/.dotfiles/home/z.sh
+fi
 
 # Alias hub to git
 eval "$(hub alias -s)"
@@ -80,20 +83,22 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 
 # Extra paths
+export PATH="$HOME/.rvm/bin:$PATH"
+export PATH="/opt/homebrew/opt/mariadb@10.6/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 export PATH="$HOME/.yarn/bin:$PATH"
+export PATH="$HOME/.codeium/windsurf/bin:$PATH"
+export PATH="$HOME/.spin/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # do not update all homebrew stuff automatically
 export HOMEBREW_NO_AUTO_UPDATE=1
-
-#export PATH=/Users/Shared/DBngin/postgresql/17.0/bin:$PATH
 
 export PATH=$HOME/bin:~/.config/phpmon/bin:$PATH
 export JAVA_HOME="$(brew --prefix)/opt/openjdk@17"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 
 # Initialize modern tools
 # zoxide - smarter cd
@@ -101,7 +106,12 @@ if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
 
-# fnm - Node.js version manager
+# NVM - Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
+
+# fnm - Fast Node Manager (preferred, with NVM fallback)
 if command -v fnm &> /dev/null; then
     eval "$(fnm env --use-on-cd)"
 fi

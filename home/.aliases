@@ -1,22 +1,27 @@
+# Docker
+alias dcomp="docker compose"
+
 # PHP
 alias phpunit="vendor/bin/phpunit"
-alias a="php artisan"
-alias ar="php artisan remote"
-alias c="composer"
+alias pest="./vendor/bin/pest"
+alias a="valet php artisan"
+alias ar="valet php artisan"
+alias c="valet composer"
 alias cu="composer update"
 alias cr="composer require"
 alias ci="composer install"
 alias cda="composer dump-autoload -o"
+alias larastan="vendor/bin/phpstan analyse"
 alias hostfile="sudo vi /etc/hosts"
-alias deploy='envoy run deploy'
-alias deploy-code='envoy run deploy-code'
-alias mfs='php artisan migrate:fresh --seed'
+alias mfs='valet php artisan migrate:fresh --seed'
 alias nah='git reset --hard;git clean -df'
 
 alias pp="php artisan test --parallel"
+alias d="php artisan dusk"
 alias sshconfig="vi ~/.ssh/config"
 alias copykey='command cat ~/.ssh/id_ed25519.pub 2>/dev/null || command cat ~/.ssh/id_rsa.pub 2>/dev/null | pbcopy'
-alias tunnel='valet share -subdomain=freekmurze -region=eu'
+alias sail='./vendor/bin/sail'
+alias dep='vendor/bin/dep'
 
 # JavaScript
 alias jest="./node_modules/.bin/jest"
@@ -26,6 +31,7 @@ alias gc="git checkout"
 alias gpo="git push origin"
 alias gm="git merge"
 alias uncommit="git reset --soft HEAD~1"
+alias glog="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 # Fast open
 alias o="open ."
@@ -50,8 +56,20 @@ alias localip="ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{
 # Flush Directory Service cache
 alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
-# Enable aliases to be sudo’ed
+# Enable aliases to be sudo'ed
 alias sudo='sudo '
+
+# PHP version switching
+alias php74="brew unlink php@8.0 && brew unlink php@8.1 && brew unlink php@8.2 && brew unlink php@8.3 && brew unlink php@8.4 && brew link --overwrite --force shivammathur/php/php@7.4"
+alias php80="brew unlink php@7.4 && brew unlink php@8.1 && brew unlink php@8.2 && brew unlink php@8.3 && brew unlink php@8.4 && brew link --overwrite --force shivammathur/php/php@8.0"
+alias php81="brew unlink php@7.4 && brew unlink php@8.0 && brew unlink php@8.2 && brew unlink php@8.3 && brew unlink php@8.4 && brew link --overwrite --force shivammathur/php/php@8.1"
+alias php82="brew unlink php@7.4 && brew unlink php@8.0 && brew unlink php@8.1 && brew unlink php@8.3 && brew unlink php@8.4 && brew link --overwrite --force shivammathur/php/php@8.2"
+alias php83="brew unlink php@7.4 && brew unlink php@8.0 && brew unlink php@8.1 && brew unlink php@8.2 && brew unlink php@8.4 && brew link --overwrite --force shivammathur/php/php@8.3"
+alias php84="brew unlink php@7.4 && brew unlink php@8.0 && brew unlink php@8.1 && brew unlink php@8.2 && brew unlink php@8.3 && brew link --overwrite --force shivammathur/php/php@8.4"
+
+# Valet log files
+alias php-log="open ~/.config/valet/Log/php-fpm.log"
+alias nginx-log="open ~/.config/valet/Log/nginx-error.log"
 
 # Modern CLI tool aliases (conditional on installation)
 if command -v eza &> /dev/null; then
