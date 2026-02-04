@@ -17,7 +17,7 @@ Personal dotfiles with modern shell tooling, optimized for Laravel/PHP developme
 ## Quick Start
 
 ```bash
-git clone git@github.com:freekmurze/dotfiles.git ~/.dotfiles
+git clone git@github.com:moisish/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 bin/install
 ```
@@ -131,7 +131,7 @@ nah                 # git reset --hard; git clean -df
 
 ```bash
 # JSON processing with jq
-curl api.github.com/users/freekmurze | jq
+curl api.github.com/users/moisish | jq
 cat composer.json | jq '.require'
 php artisan tinker --execute="echo json_encode(User::first());" | jq
 
@@ -200,7 +200,7 @@ brew bundle --file=~/.dotfiles/config/Brewfile
 Install just Claude Code without the full dotfiles:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/freekmurze/dotfiles/main/bin/install-claude-code | bash
+curl -fsSL https://raw.githubusercontent.com/moisish/dotfiles/main/bin/install-claude-code | bash
 ```
 
 ### What's Included
