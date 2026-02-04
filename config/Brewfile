@@ -13,7 +13,7 @@ brew "hub"
 brew "gh"
 brew "ack"
 brew "doctl"
-cask "1password-cli"
+# 1password-cli removed (not needed)
 brew "git-secret"
 brew "imagemagick"
 brew "mariadb@10.6"

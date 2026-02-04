@@ -16,7 +16,7 @@ DEFAULT_USER=`whoami`
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git docker docker-compose composer macos vagrant zsh-autosuggestions)
+plugins=(git docker docker-compose composer macos vagrant)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -60,8 +60,10 @@ if [ -f ~/.dotfiles/home/z.sh ]; then
     . ~/.dotfiles/home/z.sh
 fi
 
-# Alias hub to git
-eval "$(hub alias -s)"
+# Alias hub to git (if installed)
+if command -v hub &> /dev/null; then
+    eval "$(hub alias -s)"
+fi
 
 # Sudoless npm https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
 NPM_PACKAGES="${HOME}/.npm-packages"
@@ -78,8 +80,10 @@ ssh-add -A 2>/dev/null;
 # Setup xdebug
 export XDEBUG_CONFIG="idekey=VSCODE"
 
-# Enable autosuggestions (installed via brew)
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Enable autosuggestions (if installed via brew)
+if [ -f $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 
 # Extra paths

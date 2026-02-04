@@ -1,12 +1,12 @@
 [core]
-	excludesfile = /Users/freek/.global-gitignore
+	excludesfile = ~/.global-gitignore
 	autocrlf = false
 	pager = delta
 
 [user]
-	name = Freek Van der Herten
-	email = freek@spatie.be
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOd4zgKsJm1yDquP2+Ca7nZqUiJ2aZNwxJHP9gg3teWQ
+	name = moisish
+	email = moisis@digitalmarmalade.co.uk
+	signingkey = 2AA80ADDDCDE7964BBE6DA5F1841D1754EEE2C37
 
 [filter "lfs"]
 	required = true
@@ -20,14 +20,11 @@
 [init]
 	defaultBranch = main
 
-[gpg]
-	format = ssh
-
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
-
 [commit]
 	gpgsign = true
+
+[gpg]
+	program = /opt/homebrew/bin/gpg
 
 [push]
 	autoSetupRemote = true
