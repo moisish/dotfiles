@@ -1,8 +1,10 @@
 # Make nano the default editor
 export EDITOR="nano"
 
-# Larger bash history (allow 32³ entries; default is 500)
+# History configuration (works for both bash and zsh)
 export HISTSIZE=32768
+export HISTFILE=~/.zsh_history
+export SAVEHIST=$HISTSIZE
 export HISTFILESIZE=$HISTSIZE
 export HISTCONTROL=ignoredups
 # Make some commands not show up in history
