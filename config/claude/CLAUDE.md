@@ -7,12 +7,45 @@ Do not excessively use emojis.
 Prefer using browser agent skill over using playwright directly.
 
 ## Coding Standards
-When working with Laravel/PHP projects, always use the php-guidelines-from-spatie and mobot-php-laravel-guidelines skills
+
+### PHP / Laravel
+When working with Laravel/PHP projects, always use the `php-guidelines-from-spatie` and `mobot-php-laravel-guidelines` skills.
+
+### React / TypeScript
+When working with React or TypeScript projects, always use the `mobot-react-typescript-guidelines` skill.
+
+### React Native
+When working with React Native projects, always use the `react-native-best-practices` skill.
+
+### Testing
+When writing tests for PHP, Laravel, or JavaScript projects, always use the `mobot-testing-guidelines` skill.
+
+
+## CRITICAL: Always Use Valet for PHP Commands
+
+The system PHP version may be older. **ALWAYS** prefix PHP-related commands with `valet`:
+
+```bash
+# ✅ CORRECT - Use valet
+valet php artisan make:model Post
+valet php artisan test
+valet php artisan migrate
+valet composer install
+valet composer test
+valet php -v
+
+# ❌ WRONG - Never use directly
+php artisan make:model Post
+php artisan test
+composer install
+```
+
+**All Artisan, PHP, and Composer commands MUST use `valet` prefix.**
 
 ## Using GitHub
 For questions about GitHub, use the gh tool
 
-## Commit Messages
+### Commit Messages
 
 - Write clear, concise commit messages following conventional commits format
 - **NEVER** include AI attribution in commit messages (no "Generated with Claude Code", no "Co-Authored-By: Claude", etc.)
