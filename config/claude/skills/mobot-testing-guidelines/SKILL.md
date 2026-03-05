@@ -268,6 +268,11 @@ tests/
 │   ├── Resource/        # Resource tests (one file per Action)
 │   ├── Schedule/        # Schedule tests (one file per Job)
 │   └── Settings/        # Settings page tests
+├── Browser/              # Browser tests (Pest 4 + Playwright)
+│   ├── Auth/            # Auth flow browser tests
+│   ├── AwsAccounts/     # AWS setup flow browser tests
+│   ├── Schedules/       # Schedule CRUD browser tests
+│   └── SmokeTest.php    # Smoke tests for all pages
 ├── Unit/                # Unit tests
 │   ├── Enums/          # Enum tests
 │   └── Services/       # Service class tests
@@ -305,6 +310,62 @@ test('validation')
 test('auth test')
 ```
 
+## Browser Testing
+
+Browser tests use Pest 4's browser plugin with Playwright to test the full React frontend in a real Chromium browser.
+
+### Running Browser Tests
+
+```bash
+valet php vendor/bin/pest --testsuite=Browser
+```
+
+Browser tests are intentionally separated from the main test suite (`valet composer test`) since they are slower and require a built frontend.
+
+### Prerequisites
+
+- Frontend must be built: `npm run build`
+- Playwright must be installed: `npm install playwright && npx playwright install chromium`
+
+### When to Use Browser Tests vs Feature Tests
+
+| Use Browser Tests | Use Feature Tests |
+|---|---|
+| Interactive components (modals, grids, dropdowns) | HTTP responses and status codes |
+| Form validation rendering in the UI | Server-side validation rules |
+| Client-side navigation and routing | Inertia props and component rendering |
+| JavaScript error detection | Database state verification |
+| Multi-step flows with UI state | Authorization and policy checks |
+
+### Pattern for Authenticated Browser Tests
+
+Use `$this->actingAs($user)` **before** calling `visit()` or creating models that need user tracking:
+
+```php
+it('can view dashboard', function (): void {
+    $user = User::factory()->create();
+    $this->actingAs($user);
+
+    $page = visit('/dashboard');
+    $page->assertSee('Dashboard');
+});
+```
+
+### Smoke Testing
+
+Use `visit()` with an array of URLs to smoke-test multiple pages:
+
+```php
+it('loads all pages without javascript errors', function (): void {
+    $pages = visit(['/', '/about', '/contact']);
+    $pages->assertNoJavascriptErrors();
+});
+```
+
+### Browser Tests and Code Coverage
+
+Browser tests are excluded from the 100% code coverage metric. They complement feature tests by verifying frontend behavior.
+
 ## Continuous Integration
 
 Tests run automatically on:
@@ -313,3 +374,5 @@ Tests run automatically on:
 - Scheduled runs (daily)
 
 All tests must pass before code can be merged to main branch.
+
+Browser tests run in a separate CI job with `npm run build` and Playwright installed.
