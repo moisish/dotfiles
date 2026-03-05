@@ -50,3 +50,4 @@ For questions about GitHub, use the gh tool
 - Write clear, concise commit messages following conventional commits format
 - **NEVER** include AI attribution in commit messages (no "Generated with Claude Code", no "Co-Authored-By: Claude", etc.)
 - Keep commit messages focused on what changed and why
+- Avoid paragraphs in commit messages if not necessary
