@@ -42,6 +42,14 @@ composer install
 
 **All Artisan, PHP, and Composer commands MUST use `valet` prefix.**
 
+## Superpowers + Beads Integration
+
+When a project uses both **superpowers** and **bd** (beads) for issue tracking:
+
+- **Do NOT create spec or plan markdown files.** Instead, add superpowers output (specs, plans, design docs) directly as comments on the active bd task using `bd comments add <id>`.
+- If there is no active task for the work, **create one first** with `bd create`, then attach the content as a comment.
+- Never commit superpowers-generated files (`docs/superpowers/`) to the repository.
+
 ## Using GitHub
 For questions about GitHub, use the gh tool
 
